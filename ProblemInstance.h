@@ -9,6 +9,6 @@ public:
 	ProblemInstance();
 
 	int capacity;
-	int number;
+	int quantity;
 	std::list<Object*> objectList;
 };
