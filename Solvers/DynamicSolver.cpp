@@ -1,8 +1,7 @@
 #include "DynamicSolver.h"
 
-#include "../Object.h"
+#include "../ProblemInstance.h"
 #include "../Result.h"
-#include <list>
 #include <chrono>
 
 using namespace std;

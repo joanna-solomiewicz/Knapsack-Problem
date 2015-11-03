@@ -3,7 +3,9 @@
 class Result;
 class ProblemInstance;
 
-class DynamicSolver {
+class BruteforceSolver {
+private:
+    bool binaryIncrement(int T[], int size);
 public:
     Result* solveProblem(ProblemInstance* problemInstance);
 };

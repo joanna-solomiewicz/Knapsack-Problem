@@ -8,8 +8,10 @@
  */
 
 #include <iostream>
-#include "Solvers/DynamicSolver.h"
+#include "ProblemGenerator.h"
 #include "Result.h"
+#include "Solvers/DynamicSolver.h"
+#include "Solvers/BruteforceSolver.h"
 
 using namespace std;
 
@@ -18,10 +20,14 @@ int main() {
 
     ProblemInstance* problemInstance = ProblemGenerator::generateProblem();
     DynamicSolver dynamic;
-    Result* result;
-    result = dynamic.solveProblem(problemInstance);
-    result->print();
+    Result* dynamicRes;
+    dynamicRes = dynamic.solveProblem(problemInstance);
+    dynamicRes->print();
 
+    BruteforceSolver bruteforce;
+    Result* bruteforceRes;
+    bruteforceRes = bruteforce.solveProblem(problemInstance);
+    bruteforceRes->print();
 
     return 111;
 }
