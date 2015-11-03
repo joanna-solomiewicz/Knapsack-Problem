@@ -7,7 +7,7 @@ public:
 private:
     static int getCapacity();
     static int getObjectsQuantity();
-    static void generateObjectList(ProblemInstance* problemInstance);
+    static void generateObjectsList(ProblemInstance* problemInstance);
 
 };
 

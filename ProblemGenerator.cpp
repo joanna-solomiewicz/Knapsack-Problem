@@ -10,7 +10,7 @@ ProblemInstance *ProblemGenerator::generateProblem() {
     ProblemInstance* problemInstance = new ProblemInstance();
     problemInstance -> capacity = getCapacity();
     problemInstance -> quantity = getObjectsQuantity();
-    generateObjectList(problemInstance);
+    generateObjectsList(problemInstance);
 
     return problemInstance;
 }
@@ -29,7 +29,7 @@ int ProblemGenerator::getObjectsQuantity() {
     return quantity;
 }
 
-void ProblemGenerator::generateObjectList(ProblemInstance *problemInstance) {
+void ProblemGenerator::generateObjectsList(ProblemInstance *problemInstance) {
     string answer;
     bool isDrawEnabled = false;
     int objectsLeft = problemInstance->quantity;
@@ -45,7 +45,7 @@ void ProblemGenerator::generateObjectList(ProblemInstance *problemInstance) {
         if(isDrawEnabled){
             Object* object = new Object(objectsLeft);
             objectsLeft--;
-            problemInstance->objectList.push_back(object);
+            problemInstance->objectsList.push_back(object);
         }
         else{
             int weigth, value;
@@ -56,7 +56,7 @@ void ProblemGenerator::generateObjectList(ProblemInstance *problemInstance) {
             cin>>value;
             Object* object = new Object(objectsLeft,value,weigth);
             objectsLeft--;
-            problemInstance->objectList.push_back(object);
+            problemInstance->objectsList.push_back(object);
 //            while(1) {
 //                cout << "Do You want to draw remaining objects' weights and values? [Y/n] ";
 //                cin >> answer;

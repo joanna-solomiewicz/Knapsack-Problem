@@ -10,5 +10,5 @@ public:
 
 	int capacity;
 	int quantity;
-	std::list<Object*> objectList;
+	std::list<Object*> objectsList;
 };

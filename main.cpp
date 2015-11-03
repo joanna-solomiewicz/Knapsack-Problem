@@ -8,12 +8,19 @@
  */
 
 #include <iostream>
-#include "ProblemGenerator.h"
+#include "Solvers/DynamicSolver.h"
+#include "Result.h"
 
 using namespace std;
 
 int main() {
-    ProblemGenerator::generateProblem();
+    srand(time(NULL));
+
+    ProblemInstance* problemInstance = ProblemGenerator::generateProblem();
+    DynamicSolver dynamic;
+    Result* result;
+    result = dynamic.solveProblem(problemInstance);
+    result->print();
 
 
     return 111;

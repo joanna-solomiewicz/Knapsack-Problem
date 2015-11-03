@@ -1,23 +1,15 @@
 #include "Object.h"
 
-#include <cstdio>
 #include <cstdlib>
-#include <ctime>
 
 Object::Object(int ordinal) {
-	srand(time(NULL));
-
-	object entity;
-	entity.ordinal = ordinal;
-	entity.value = rand() % 101;
-	entity.weight = rand() % 101;
+	this->ordinal = ordinal;
+	value = 1 + rand() % 10;
+	weight = 1 + rand() % 10;
 }
 
 Object::Object(int ordinal, int value, int weight) {
-	srand(time(NULL));
-
-	object entity;
-	entity.ordinal = ordinal;
-	entity.value = value;
-	entity.weight = weight;
+	this->ordinal = ordinal;
+	this->value = value;
+	this->weight = weight;
 }
