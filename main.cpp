@@ -12,6 +12,7 @@
 #include "Result.h"
 #include "Solvers/DynamicSolver.h"
 #include "Solvers/BruteforceSolver.h"
+#include "Solvers/GreedySolver.h"
 
 using namespace std;
 
@@ -28,6 +29,12 @@ int main() {
     Result* bruteforceRes;
     bruteforceRes = bruteforce.solveProblem(problemInstance);
     bruteforceRes->print();
+
+    GreedySolver greedy;
+    Result* greedyRes;
+    greedyRes = greedy.solveProblem(problemInstance);
+    greedyRes->print();
+
 
     return 111;
 }

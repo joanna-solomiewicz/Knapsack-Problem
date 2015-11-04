@@ -11,5 +11,5 @@ set(SOURCE_FILES
         Object.h
         ProblemInstance.cpp
         ProblemInstance.h
-        Result.cpp Result.h Solvers/DynamicSolver.cpp Solvers/DynamicSolver.h Solvers/BruteforceSolver.cpp Solvers/BruteforceSolver.h)
+        Result.cpp Result.h Solvers/DynamicSolver.cpp Solvers/DynamicSolver.h Solvers/BruteforceSolver.cpp Solvers/BruteforceSolver.h Solvers/GreedySolver.cpp Solvers/GreedySolver.h)
 add_executable(Knapsack_Problem ${SOURCE_FILES})
