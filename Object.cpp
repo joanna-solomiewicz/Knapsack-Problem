@@ -14,8 +14,14 @@ Object::Object(int ordinal, int value, int weight) {
 	this->weight = weight;
 }
 
-bool Object::comp(const Object *object1, const Object *object2) {
+bool Object::comp_increasing(const Object *object1, const Object *object2) {
 	float ratio1 = (float)object1->value/object1->weight;
 	float ratio2 = (float)object2->value/object2->weight;
 	return (ratio1 < ratio2);
+}
+
+bool Object::comp_decreasing(const Object *object1, const Object *object2) {
+	float ratio1 = (float)object1->value/object1->weight;
+	float ratio2 = (float)object2->value/object2->weight;
+	return (ratio1 > ratio2);
 }
