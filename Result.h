@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <chrono>
 #include "Object.h"
 
 
@@ -10,6 +11,6 @@ public:
     void print();
     int valueSum;
     int weightSum;
-    double elapsed_seconds;
+    std::chrono::duration<double> elapsed_seconds;
     std::list<Object*> chosenObjectsList;
 };

@@ -7,7 +7,7 @@ using namespace std;
 Result::Result() {
     valueSum = 0;
     weightSum = 0;
-    elapsed_seconds = 0;
+//    elapsed_seconds = 0;
     chosenObjectsList.clear();
 }
 
@@ -22,5 +22,5 @@ void Result::print() {
         chosenObjectsList.pop_front();
         objectsLeft--;
     }
-    cout << "Time: " << elapsed_seconds << endl;
+    cout << "Time: " << elapsed_seconds.count() << endl;
 }

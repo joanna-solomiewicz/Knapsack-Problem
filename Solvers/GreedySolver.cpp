@@ -20,6 +20,8 @@ Result *GreedySolver::solveProblem(ProblemInstance *problemInstance) {
     for(auto &i : pickedObjects) {
         if(i->weight <= capacity) {
             result->chosenObjectsList.push_back(i);
+            result->valueSum += i->value;
+            result->weightSum += i->weight;
             capacity -= i->weight;
         }
     }
