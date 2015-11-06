@@ -24,3 +24,15 @@ void Result::print() {
     }
     cout << "Time: " << elapsed_sec << " seconds" << endl;
 }
+
+void Result::add(Object *object) {
+    valueSum += object->value;
+    weightSum += object->weight;
+    chosenObjectsList.push_back(object);
+}
+
+void Result::remove(Object *object) {
+    valueSum -= object->value;
+    weightSum -= object->weight;
+    chosenObjectsList.remove(object);
+}
