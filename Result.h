@@ -11,6 +11,8 @@ public:
     void add(Object *object);
     void remove(Object *object);
     void print();
+    bool isEqual(Result* result2);
+
     int valueSum;
     int weightSum;
     double elapsed_sec;

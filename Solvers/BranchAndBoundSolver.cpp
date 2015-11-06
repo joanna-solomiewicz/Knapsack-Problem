@@ -1,20 +1,30 @@
-#include "BacktrackingSolver.h"
+#include "BranchAndBoundSolver.h"
 
 #include "../ProblemInstance.h"
 #include "../Result.h"
 #include <chrono>
 
-#include <iostream>
-
 using namespace std;
-
 
 static Result result;
 static int capacity;
 
-void BacktrackingSolver::takeNode(std::list<Object*>::iterator i, std::list<Object*>* list, Result tempResult){
+int getBound(Result* currResult, std::list<Object*>*list, std::list<Object*>::iterator k){
+    int b,c;
+    b = currResult->valueSum;
+    c = currResult->weightSum;
+    std::list<Object*>::iterator i;
+    for (i=k; i != (*list).end(); i++){
+        c+=(*i)->weight;
+        if (c < capacity) b+=(*i)->value;
+        else return (b + (1 - (c-capacity)/(*i)->weight/(*i)->value));
+    }
+    return b;
+}
+
+void BranchAndBoundSolver::takeNode(std::list<Object*>::iterator i, std::list<Object*>* list, Result tempResult){
     tempResult.add(*i);
-    if (tempResult.weightSum <= capacity){
+    if (tempResult.weightSum <= capacity && getBound(&tempResult,list,i) > result.valueSum ){
         i++;
         if(i == (*list).end()){
             if(tempResult.valueSum > result.valueSum) result = tempResult;
@@ -26,25 +36,27 @@ void BacktrackingSolver::takeNode(std::list<Object*>::iterator i, std::list<Obje
     }
 }
 
-void BacktrackingSolver::dontTakeNode(std::list<Object*>::iterator i, std::list<Object*>* list, Result tempResult){
-    i++;
-    if(i == (*list).end()){
-        if(tempResult.valueSum > result.valueSum) result = tempResult;
-    }
-    else{
-        takeNode(i,list,tempResult);
-        dontTakeNode(i,list,tempResult);
+void BranchAndBoundSolver::dontTakeNode(std::list<Object*>::iterator i, std::list<Object*>* list, Result tempResult){
+    if (getBound(&tempResult,list,i) > result.valueSum ) {
+        i++;
+        if (i == (*list).end()) {
+            if (tempResult.valueSum > result.valueSum) result = tempResult;
+        }
+        else {
+            takeNode(i, list, tempResult);
+            dontTakeNode(i, list, tempResult);
+        }
     }
 }
 
-Result *BacktrackingSolver::solveProblem(ProblemInstance *problemInstance) {
+Result *BranchAndBoundSolver::solveProblem(ProblemInstance *problemInstance) {
     capacity = problemInstance->capacity;
     Result tempResult;
 
     clock_t begin = clock();
 
     list<Object*> sortedList = problemInstance->objectsList;
-//    sortedList.sort(Object::comp_weight_decreasing); // test if better to sort or not
+    sortedList.sort(Object::comp_decreasing); // Sorting object decreasing: factor is value/weight
 
     list<Object*>::iterator i = sortedList.begin();
 
@@ -76,20 +88,8 @@ Result *BacktrackingSolver::solveProblem(ProblemInstance *problemInstance) {
 
 
 
-//int bound(Result* currResult, std::list<Object*>list, std::list<Object*>::iterator k, int capacity){
-//    int b,c;
-//    b = currResult->valueSum;
-//    c = currResult->weightSum;
-//    std::list<Object*>::iterator i;
-//    for (i=k; i != list.end(); i++){
-//        c+=(*i)->weight;
-//        if (c < capacity) b+=(*i)->value;
-//        else return (b + (1 - (c-capacity)/(*i)->weight/(*i)->value));
-//    }
-//    return b;
-//}
 
-//Result *BacktrackingSolver::solveProblem(ProblemInstance *problemInstance) {
+//Result *BranchAndBoundSolver::solveProblem(ProblemInstance *problemInstance) {
 //
 //    bool isPutted[problemInstance->capacity] = {0};
 //    Result *result = new Result();

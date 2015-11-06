@@ -40,7 +40,7 @@ Result* DynamicSolver::solveProblem(ProblemInstance *problemInstance) {
             tmp_res++;
             shift++;
         }
-        result->chosenObjectsList.push_front(*tmp_res);
+        result->add(*tmp_res);
         i--;
         j -= (*tmp_res)->weight;
     }

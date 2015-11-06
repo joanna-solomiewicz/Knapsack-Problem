@@ -14,6 +14,7 @@
 #include "Solvers/BruteforceSolver.h"
 #include "Solvers/GreedySolver.h"
 #include "Solvers/BacktrackingSolver.h"
+#include "Solvers/BranchAndBoundSolver.h"
 
 using namespace std;
 
@@ -41,6 +42,14 @@ int main() {
     Result *backtrackingRes;
     backtrackingRes = backtracking.solveProblem(problemInstance);
     backtrackingRes->print();
+
+    BranchAndBoundSolver branchAndBound;
+    Result *branchAndBoundRes;
+    branchAndBoundRes = branchAndBound.solveProblem(problemInstance);
+    branchAndBoundRes->print();
+
+    if (backtrackingRes->isEqual(dynamicRes)) cout<<"\n\nbacktracking = dynamic";
+    if (branchAndBoundRes->isEqual(dynamicRes) ) cout<<"\n\nbranch = dynamic";
 
 
     return 111;

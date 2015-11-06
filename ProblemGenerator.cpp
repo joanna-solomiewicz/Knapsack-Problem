@@ -45,7 +45,7 @@ void ProblemGenerator::generateObjectsList(ProblemInstance *problemInstance) {
         if(isDrawEnabled){
             Object* object = new Object(objectsLeft);
             objectsLeft--;
-            problemInstance->objectsList.push_back(object);
+            problemInstance->objectsList.push_front(object);
         }
         else{
             int weigth, value;
@@ -56,7 +56,7 @@ void ProblemGenerator::generateObjectsList(ProblemInstance *problemInstance) {
             cin>>value;
             Object* object = new Object(objectsLeft,value,weigth);
             objectsLeft--;
-            problemInstance->objectsList.push_back(object);
+            problemInstance->objectsList.push_front(object);
 //            while(1) {
 //                cout << "Do You want to draw remaining objects' weights and values? [Y/n] ";
 //                cin >> answer;

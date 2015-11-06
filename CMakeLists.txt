@@ -20,5 +20,5 @@ set(SOURCE_FILES
         Solvers/GreedySolver.cpp
         Solvers/GreedySolver.h
         Solvers/BacktrackingSolver.cpp
-        Solvers/BacktrackingSolver.h)
+        Solvers/BacktrackingSolver.h Solvers/BranchAndBoundSolver.cpp Solvers/BranchAndBoundSolver.h)
 add_executable(Knapsack_Problem ${SOURCE_FILES})
