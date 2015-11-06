@@ -12,6 +12,23 @@ using namespace std;
 static Result result;
 static int capacity;
 
+
+Result *BacktrackingSolver::solveProblem(ProblemInstance *problemInstance) {
+    capacity = problemInstance->capacity;
+    Result tempResult;
+
+    clock_t begin = clock();
+
+    list<Object*>::iterator i = problemInstance->objectsList.begin();
+    takeNode(i,&problemInstance->objectsList,tempResult);
+    dontTakeNode(i,&problemInstance->objectsList,tempResult);
+
+    clock_t end = clock();
+    result.elapsed_sec = double(end - begin) / CLOCKS_PER_SEC;
+
+    return &result;
+}
+
 void BacktrackingSolver::takeNode(std::list<Object*>::iterator i, std::list<Object*>* list, Result tempResult){
     tempResult.add(*i);
     if (tempResult.weightSum <= capacity){
@@ -37,14 +54,14 @@ void BacktrackingSolver::dontTakeNode(std::list<Object*>::iterator i, std::list<
     }
 }
 
-Result *BacktrackingSolver::solveProblem(ProblemInstance *problemInstance) {
+Result *BacktrackingSolver::solveProblem_weigthSorted(ProblemInstance *problemInstance) {
     capacity = problemInstance->capacity;
     Result tempResult;
 
     clock_t begin = clock();
 
     list<Object*> sortedList = problemInstance->objectsList;
-//    sortedList.sort(Object::comp_weight_decreasing); // test if better to sort or not
+    sortedList.sort(Object::comp_weight_decreasing); // test if better to sort or not
 
     list<Object*>::iterator i = sortedList.begin();
 

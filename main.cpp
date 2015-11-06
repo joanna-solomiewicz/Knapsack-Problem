@@ -26,31 +26,36 @@ int main() {
     DynamicSolver dynamic;
     Result* dynamicRes;
     dynamicRes = dynamic.solveProblem(problemInstance);
+    cout<<"\nDynamic Result:\n";
     dynamicRes->print();
 
-//    BruteforceSolver bruteforce;
-//    Result* bruteforceRes;
-//    bruteforceRes = bruteforce.solveProblem(problemInstance);
-//    bruteforceRes->print();
+    BruteforceSolver bruteforce;
+    Result* bruteforceRes;
+    bruteforceRes = bruteforce.solveProblem_recursively(problemInstance);
+    cout<<"\nBruteforce:rek Result:\n";
+    bruteforceRes->print();
+
+    bruteforceRes = bruteforce.solveProblem_iteratively(problemInstance);
+    cout<<"\nBruteforce:it Result:\n";
+    bruteforceRes->print();
 
     GreedySolver greedy;
     Result* greedyRes;
     greedyRes = greedy.solveProblem(problemInstance);
+    cout<<"\nGreedy Result:\n";
     greedyRes->print();
 
     BacktrackingSolver backtracking;
     Result *backtrackingRes;
     backtrackingRes = backtracking.solveProblem(problemInstance);
+    cout<<"\nBacktrcking Result:\n";
     backtrackingRes->print();
 
     BranchAndBoundSolver branchAndBound;
     Result *branchAndBoundRes;
     branchAndBoundRes = branchAndBound.solveProblem(problemInstance);
+    cout<<"\nB&B Result:\n";
     branchAndBoundRes->print();
-
-    if (backtrackingRes->isEqual(dynamicRes)) cout<<"\n\nbacktracking = dynamic";
-    if (branchAndBoundRes->isEqual(dynamicRes) ) cout<<"\n\nbranch = dynamic";
-
 
     return 111;
 }
