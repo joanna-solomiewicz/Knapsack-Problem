@@ -2,7 +2,6 @@
 
 #include "../ProblemInstance.h"
 #include "../Result.h"
-#include <chrono>
 
 using namespace std;
 
@@ -14,9 +13,7 @@ Result* BruteforceSolver::solveProblem(ProblemInstance *problemInstance) {
 
     Result* result = new Result();
 
-    chrono::time_point<chrono::system_clock> start, stop;
-
-    start = chrono::system_clock::now();
+    clock_t begin = clock();
 
     while( binaryIncrement(Table, problemInstance->quantity)) {
         Result* pickedObjects = new Result();
@@ -40,8 +37,8 @@ Result* BruteforceSolver::solveProblem(ProblemInstance *problemInstance) {
         }
     }
 
-    stop = chrono::system_clock::now();
-    chrono::duration<double> elapsed_seconds = stop-start;
+    clock_t end = clock();
+    result->elapsed_sec = double(end - begin) / CLOCKS_PER_SEC;
 
     delete[] Table;
 

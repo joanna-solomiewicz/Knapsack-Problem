@@ -2,16 +2,13 @@
 
 #include "../ProblemInstance.h"
 #include "../Result.h"
-#include <chrono>
 
 using namespace std;
 
 Result *GreedySolver::solveProblem(ProblemInstance *problemInstance) {
     Result *result = new Result();
 
-    chrono::time_point<chrono::system_clock> start, stop;
-
-    start = chrono::system_clock::now();
+    clock_t begin = clock();
 
     list<Object*> pickedObjects = problemInstance->objectsList;
     int capacity = problemInstance->capacity;
@@ -23,11 +20,12 @@ Result *GreedySolver::solveProblem(ProblemInstance *problemInstance) {
             result->valueSum += i->value;
             result->weightSum += i->weight;
             capacity -= i->weight;
+            if(capacity == 0) break; // SPRAWDZIĆ !!
         }
     }
 
-    stop = chrono::system_clock::now();
-    chrono::duration<double> elapsed_seconds = stop-start;
+    clock_t end = clock();
+    result->elapsed_sec = double(end - begin) / CLOCKS_PER_SEC;
 
     pickedObjects.clear();
 

@@ -4,7 +4,7 @@
  który może podać:
  pojemność plecaka, ilość elementów, ich wagi i ceny (możliwość generacji losowej).
 - Na wyjściu program podaje dla każdego zaimplementowanego algorytmu znalezione rozwiązanie
- w postaci wypisanej zawartości plecaka, wspólnej wagi i ceny tych elementów.h
+ w postaci wypisanej zawartości plecaka, wspólnej wagi i ceny tych elementów
  */
 
 #include <iostream>

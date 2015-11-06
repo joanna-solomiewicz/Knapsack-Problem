@@ -2,7 +2,6 @@
 
 #include "../ProblemInstance.h"
 #include "../Result.h"
-#include <chrono>
 
 using namespace std;
 
@@ -13,9 +12,7 @@ Result* DynamicSolver::solveProblem(ProblemInstance *problemInstance) {
 
     Result *result = new Result();
 
-    chrono::time_point<chrono::system_clock> start, stop;
-
-    start = chrono::system_clock::now();
+    clock_t begin = clock();
 
     for(int i = 0; i < problemInstance->quantity + 1; i++) { Table[i][0] = 0; };
     for(int i = 0; i < problemInstance->capacity + 1; i++) { Table[0][i] = 0; };
@@ -48,9 +45,8 @@ Result* DynamicSolver::solveProblem(ProblemInstance *problemInstance) {
         j -= (*tmp_res)->weight;
     }
 
-
-    stop = chrono::system_clock::now();
-    chrono::duration<double> elapsed_seconds = stop-start;
+    clock_t end = clock();
+    result->elapsed_sec = double(end - begin) / CLOCKS_PER_SEC;
 
     for(int m = 0; m < problemInstance->quantity + 1; m++) delete[] Table[m];
     delete[] Table;
