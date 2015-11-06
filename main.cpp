@@ -10,52 +10,79 @@
 #include <iostream>
 #include "ProblemGenerator.h"
 #include "Result.h"
-#include "Solvers/DynamicSolver.h"
-#include "Solvers/BruteforceSolver.h"
+#include "Solvers/BruteforceIterativeSolver.h"
+#include "Solvers/BruteforceRecursiveSolver.h"
 #include "Solvers/GreedySolver.h"
 #include "Solvers/BacktrackingSolver.h"
+#include "Solvers/DynamicSolver.h"
 #include "Solvers/BranchAndBoundSolver.h"
 
 using namespace std;
 
+template <class T>
+Result* solveProblem(ProblemInstance *instance){
+    T solver;
+    return solver.solveProblem(instance);
+}
+
 int main() {
     srand(time(NULL));
+    Result* result;
 
+    cout<<"Greetings!\n"
+        <<"I will solve 0-1 Knapsack Problem for You :-)\n"
+        <<"\n";
+
+    cout<<"Let's generate problem instance:\n";
     ProblemInstance* problemInstance = ProblemGenerator::generateProblem();
 
-    DynamicSolver dynamic;
-    Result* dynamicRes;
-    dynamicRes = dynamic.solveProblem(problemInstance);
-    cout<<"\nDynamic Result:\n";
-    dynamicRes->print();
+    while (1)
+    {
+        std::system("clear");
 
-    BruteforceSolver bruteforce;
-    Result* bruteforceRes;
-    bruteforceRes = bruteforce.solveProblem_recursively(problemInstance);
-    cout<<"\nBruteforce:rek Result:\n";
-    bruteforceRes->print();
+        cout << "Great! Now, what do You wan't to do?:\n\n";
+        cout << "1. Show me problem instance:\n"
+        << "2. Solve problem using 'Bruteforce'algorithm (iterative version)\n"
+        << "3. Solve problem using 'Bruteforce' algorithm (recursive version)\n"
+        << "4. Solve problem using 'Greedy; algorithm\n"
+        << "5. Solve problem using 'Backtracking' algorithm\n"
+        << "6. Solve problem using 'Dynamic' algorithm\n"
+        << "7. Solve problem using 'Branch' and Bound algorithm\n"
+        << "8. Quit\n";
 
-    bruteforceRes = bruteforce.solveProblem_iteratively(problemInstance);
-    cout<<"\nBruteforce:it Result:\n";
-    bruteforceRes->print();
+        char answer = '0';
+        while (answer < '1' || answer > '8')
+            cin >> answer;
 
-    GreedySolver greedy;
-    Result* greedyRes;
-    greedyRes = greedy.solveProblem(problemInstance);
-    cout<<"\nGreedy Result:\n";
-    greedyRes->print();
+        switch (answer) {
+            case '1':
+                // Wyświetl instancję
+                break;
+            case '2':
+                result = solveProblem<BruteforceIterativeSolver>(problemInstance);
+                break;
+            case '3':
+                result = solveProblem<BruteforceRecursiveSolver>(problemInstance);
+                break;
+            case '4':
+                result = solveProblem<GreedySolver>(problemInstance);
+                break;
+            case '5':
+                result = solveProblem<BacktrackingSolver>(problemInstance);
+                break;
+            case '6':
+                result = solveProblem<DynamicSolver>(problemInstance);
+                break;
+            case '7':
+                result = solveProblem<BranchAndBoundSolver>(problemInstance);
+                break;
+            case '8':
+                return 111;
+        }
 
-    BacktrackingSolver backtracking;
-    Result *backtrackingRes;
-    backtrackingRes = backtracking.solveProblem(problemInstance);
-    cout<<"\nBacktrcking Result:\n";
-    backtrackingRes->print();
+        result->print();//poprawić
+        char a;
+        cin>>a;
 
-    BranchAndBoundSolver branchAndBound;
-    Result *branchAndBoundRes;
-    branchAndBoundRes = branchAndBound.solveProblem(problemInstance);
-    cout<<"\nB&B Result:\n";
-    branchAndBoundRes->print();
-
-    return 111;
+    }
 }

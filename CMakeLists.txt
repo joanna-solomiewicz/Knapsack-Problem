@@ -15,10 +15,10 @@ set(SOURCE_FILES
         Result.h
         Solvers/DynamicSolver.cpp
         Solvers/DynamicSolver.h
-        Solvers/BruteforceSolver.cpp
-        Solvers/BruteforceSolver.h
+        Solvers/BruteforceRecursiveSolver.cpp
+        Solvers/BruteforceRecursiveSolver.h
         Solvers/GreedySolver.cpp
         Solvers/GreedySolver.h
         Solvers/BacktrackingSolver.cpp
-        Solvers/BacktrackingSolver.h Solvers/BranchAndBoundSolver.cpp Solvers/BranchAndBoundSolver.h)
+        Solvers/BacktrackingSolver.h Solvers/BranchAndBoundSolver.cpp Solvers/BranchAndBoundSolver.h Solvers/BruteforceIterativeSolver.cpp Solvers/BruteforceIterativeSolver.h)
 add_executable(Knapsack_Problem ${SOURCE_FILES})
