@@ -27,9 +27,9 @@ Result* solveProblem(ProblemInstance *instance){
     return solver.solveProblem(instance);
 }
 
-
 int main() {
     srand(time(NULL));
+    ProblemInstance* problemInstance = NULL;
 
     std::system("clear");
     cout<<"Greetings!\n"
@@ -39,11 +39,10 @@ int main() {
     cout<<"What would You like to do ?\n\n";
     cout<<"1. Generate graph data ( NOT RECOMMENDED ;-) )\n"
         <<"2. Generate problem instance\n";
+
     bool generateInstance = 0;
-    ProblemInstance* problemInstance = NULL;
     char answer = '0';
 
-    cin >> answer;
     while (answer < '1' || answer > '2')
         cin >> answer;
     switch (answer) {
