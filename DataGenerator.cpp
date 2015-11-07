@@ -32,6 +32,7 @@ void DataGenerator::generate() {
     int minCapacity = 0;
     int step = 0;
 
+//<<<<<<< Updated upstream
     while(1){
         std::system("clear");
         cout<< "What data do You want to generate?:\n\n";
@@ -59,7 +60,7 @@ void DataGenerator::generate() {
                     cout<<"Brutforce iteratively & Bruteforce recurively:\n"
                     <<"Capacity: "<<problemInstance->capacity<<"\n";
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
-                    cout<<(int)((float)i/maxQuantity*100)<<"%"<<std::flush;
+                    DataGenerator::loadingBar(maxQuantity, i);
 
                     file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
                     result = solveProblem<BruteforceIterativeSolver>(problemInstance);
@@ -81,7 +82,7 @@ void DataGenerator::generate() {
                     cout<<"Brutforce iteratively & Bruteforce recurively:\n"
                     <<"Capacity: "<<problemInstance->capacity<<"\n";
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
-                    cout<<(int)((float)i/maxQuantity*100)<<"%"<<std::flush;
+                    DataGenerator::loadingBar(maxCapacity, i);
 
                     file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
                     result = solveProblem<BruteforceIterativeSolver>(problemInstance);
@@ -103,7 +104,7 @@ void DataGenerator::generate() {
                     cout<<"Greedy & Dynamic & Branch and Bound:\n"
                     <<"Capacity: "<<problemInstance->capacity<<"\n";
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
-                    cout<<(int)((float)i/maxQuantity*100)<<"%"<<std::flush;
+                    DataGenerator::loadingBar(maxQuantity, i);
 
                     file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
 
@@ -128,7 +129,7 @@ void DataGenerator::generate() {
                     cout<<"Greedy & Dynamic & Branch and Bound:\n"
                     <<"Capacity: "<<problemInstance->capacity<<"\n";
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
-                    cout<<(int)((float)i/maxQuantity*100)<<"%"<<std::flush;
+                    DataGenerator::loadingBar(maxCapacity, i);
 
                     result = solveProblem<GreedySolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
@@ -151,7 +152,7 @@ void DataGenerator::generate() {
                     cout<<"Backtracking & Backtracking with presorting - decreasing by weight:\n"
                     <<"Capacity: "<<problemInstance->capacity<<"\n";
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
-                    cout<<(int)((float)i/maxQuantity*100)<<"%"<<std::flush;
+                    DataGenerator::loadingBar(maxQuantity, i);
 
                     result = solveProblem<BacktrackingSolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
@@ -172,7 +173,7 @@ void DataGenerator::generate() {
                     cout<<"Backtracking & Backtracking with presorting - decreasing by weight:\n"
                     <<"Capacity: "<<problemInstance->capacity<<"\n";
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
-                    cout<<(int)((float)i/maxQuantity*100)<<"%"<<std::flush;
+                    DataGenerator::loadingBar(maxCapacity, i);
 
                     result = solveProblem<BacktrackingSolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
@@ -185,4 +186,14 @@ void DataGenerator::generate() {
                 return;
         }
     }
+}
+
+void DataGenerator::loadingBar(int max, int tmp) {
+    int hash = (int)((float)tmp/max*100);
+    int dot = 100 - hash;
+    cout << "[";
+    for(int i = 0; i < hash; i++) { cout << "#"; }
+    for(int i = 0; i < dot; i++) { cout << "."; }
+    cout << "]";
+    cout << "\t" << (int)((float)tmp/max*100) << "%" << std::flush;
 }
