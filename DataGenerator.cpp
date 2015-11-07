@@ -73,10 +73,10 @@ void DataGenerator::generate() {
             case '2':
                 file.open("./Data/Bruteforce_const_quantity.txt");
                 minCapacity=100;
-                maxCapacity=5000;
+                maxCapacity=500;
                 step = (maxCapacity-minCapacity)/sampling;
                 for (int i=minCapacity; i<=maxCapacity; i+=step){
-                    ProblemInstance* problemInstance = new ProblemInstance(10,i);
+                    ProblemInstance* problemInstance = new ProblemInstance(100,i);
 
                     system("clear");
                     cout<<"Brutforce iteratively & Bruteforce recurively:\n"
@@ -95,7 +95,7 @@ void DataGenerator::generate() {
             case '3':
                 file.open("./Data/Const_capacity.txt");
                 minQuantity = 10;
-                maxQuantity = 50000;
+                maxQuantity = 5000;
                 step = (maxQuantity-minQuantity)/sampling;
                 for (int i=minQuantity; i<=maxQuantity; i+=step){
                     ProblemInstance* problemInstance = new ProblemInstance(100,i);
@@ -119,11 +119,11 @@ void DataGenerator::generate() {
                 break;
             case '4':
                 file.open("./Data/Const_quantity.txt");
-                minCapacity = 10;
-                maxCapacity = 5000;
+                minCapacity = 100;
+                maxCapacity = 50000;
                 step = (maxCapacity-minCapacity)/sampling;
                 for (int i=minCapacity; i<=maxCapacity; i+=step){
-                    ProblemInstance* problemInstance = new ProblemInstance(i,50);
+                    ProblemInstance* problemInstance = new ProblemInstance(i,500);
 
                     system("clear");
                     cout<<"Greedy & Dynamic & Branch and Bound:\n"
@@ -142,10 +142,9 @@ void DataGenerator::generate() {
                 break;
             case '5':
                 file.open("./Data/Backtracking_const_capacity.txt");
-                minQuantity = 10;
-                maxQuantity = 100;
-                step = (maxQuantity-minQuantity)/sampling;
-                for (int i=minQuantity; i<=maxQuantity; i+=step){
+                minQuantity = 1;
+                maxQuantity = 35;
+                for (int i=minQuantity; i<=maxQuantity; i++){
                     ProblemInstance* problemInstance = new ProblemInstance(40,i);
 
                     system("clear");
@@ -167,7 +166,7 @@ void DataGenerator::generate() {
                 maxCapacity = 500;
                 step = (maxCapacity-minCapacity)/sampling;
                 for (int i=minCapacity; i<=maxCapacity; i+=step){
-                    ProblemInstance* problemInstance = new ProblemInstance(i,50);
+                    ProblemInstance* problemInstance = new ProblemInstance(i,20);
 
                     system("clear");
                     cout<<"Backtracking & Backtracking with presorting - decreasing by weight:\n"

@@ -5,7 +5,7 @@
 Object::Object(int ordinal) {
 	this->ordinal = ordinal;
 	value = 1 + rand() % 10;
-	weight = 1 + rand() % 10;
+	weight = 1 + rand() % 20;
 }
 
 Object::Object(int ordinal, int value, int weight) {

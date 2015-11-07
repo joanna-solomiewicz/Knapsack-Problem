@@ -87,7 +87,7 @@ int main() {
                 case '5':
                     result = solveProblem<BacktrackingSolver>(problemInstance); break;
                 case '6':
-                    result = solveProblem<BacktrackingSolver_presorted_by_weight_desc>(problemInstance); break;
+                    result = solveProblem<DynamicSolver>(problemInstance); break;
                 case '7':
                     result = solveProblem<BranchAndBoundSolver>(problemInstance); break;
                 case '8':
