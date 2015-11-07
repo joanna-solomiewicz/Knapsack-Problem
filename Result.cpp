@@ -24,16 +24,16 @@ void Result::remove(Object *object) {
 }
 
 void Result::print() {
-    int objectsLeft = (int) chosenObjectsList.size();
-
-    while(objectsLeft) {
-        Object* resultObject = chosenObjectsList.front();
-        cout << "value: " << (*resultObject).value << "\t";
-        cout << "weight: " << (*resultObject).weight << "\t";
-        cout << endl;
-        chosenObjectsList.pop_front();
-        objectsLeft--;
+    cout<<"Objects in Knapsack:\n\n";
+    int n=1;
+    for( auto &i : this->chosenObjectsList){
+        cout<<"Object "<<n<<":\n";
+        cout << "Value: " << i->value<< "\n";
+        cout << "Weight: " << i->weight << "\n\n";
+        n++;
     }
-    cout << "Time: " << elapsed_sec << " seconds" << endl;
+    cout<<"Their value is "<<this->valueSum<<"\n";
+    cout<<"Their weight is "<<this->weightSum<<"\n";
+    cout << "Problem solved in: " << elapsed_sec << " seconds" << endl;
 }
 
