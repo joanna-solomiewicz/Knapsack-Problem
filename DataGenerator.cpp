@@ -32,7 +32,6 @@ void DataGenerator::generate() {
     int minCapacity = 0;
     int step = 0;
 
-//<<<<<<< Updated upstream
     while(1){
         std::system("clear");
         cout<< "What data do You want to generate?:\n\n";
@@ -73,10 +72,10 @@ void DataGenerator::generate() {
             case '2':
                 file.open("./Data/Bruteforce_const_quantity.txt");
                 minCapacity=100;
-                maxCapacity=500;
+                maxCapacity=400;
                 step = (maxCapacity-minCapacity)/sampling;
                 for (int i=minCapacity; i<=maxCapacity; i+=step){
-                    ProblemInstance* problemInstance = new ProblemInstance(100,i);
+                    ProblemInstance* problemInstance = new ProblemInstance(i,20);
 
                     system("clear");
                     cout<<"Brutforce iteratively & Bruteforce recurively:\n"
@@ -95,10 +94,10 @@ void DataGenerator::generate() {
             case '3':
                 file.open("./Data/Const_capacity.txt");
                 minQuantity = 10;
-                maxQuantity = 5000;
+                maxQuantity = 50000;
                 step = (maxQuantity-minQuantity)/sampling;
                 for (int i=minQuantity; i<=maxQuantity; i+=step){
-                    ProblemInstance* problemInstance = new ProblemInstance(100,i);
+                    ProblemInstance* problemInstance = new ProblemInstance(200,i);
 
                     system("clear");
                     cout<<"Greedy & Dynamic & Branch and Bound:\n"
@@ -107,7 +106,6 @@ void DataGenerator::generate() {
                     DataGenerator::loadingBar(maxQuantity, i);
 
                     file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
-
                     result = solveProblem<GreedySolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
                     result = solveProblem<DynamicSolver>(problemInstance);
@@ -131,6 +129,7 @@ void DataGenerator::generate() {
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
                     DataGenerator::loadingBar(maxCapacity, i);
 
+                    file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
                     result = solveProblem<GreedySolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
                     result = solveProblem<DynamicSolver>(problemInstance);
@@ -143,9 +142,9 @@ void DataGenerator::generate() {
             case '5':
                 file.open("./Data/Backtracking_const_capacity.txt");
                 minQuantity = 1;
-                maxQuantity = 35;
+                maxQuantity = 50;
                 for (int i=minQuantity; i<=maxQuantity; i++){
-                    ProblemInstance* problemInstance = new ProblemInstance(40,i);
+                    ProblemInstance* problemInstance = new ProblemInstance(100,i);
 
                     system("clear");
                     cout<<"Backtracking & Backtracking with presorting - decreasing by weight:\n"
@@ -153,6 +152,7 @@ void DataGenerator::generate() {
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
                     DataGenerator::loadingBar(maxQuantity, i);
 
+                    file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
                     result = solveProblem<BacktrackingSolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
                     result = solveProblem<BacktrackingSolver_presorted_by_weight_desc>(problemInstance);
@@ -163,10 +163,10 @@ void DataGenerator::generate() {
             case '6':
                 file.open("./Data/Backtracking_const_quantity.txt");
                 minCapacity = 10;
-                maxCapacity = 500;
+                maxCapacity = 5000;
                 step = (maxCapacity-minCapacity)/sampling;
                 for (int i=minCapacity; i<=maxCapacity; i+=step){
-                    ProblemInstance* problemInstance = new ProblemInstance(i,20);
+                    ProblemInstance* problemInstance = new ProblemInstance(i,50);
 
                     system("clear");
                     cout<<"Backtracking & Backtracking with presorting - decreasing by weight:\n"
@@ -174,6 +174,7 @@ void DataGenerator::generate() {
                     cout<<"Quantity: "<<problemInstance->quantity<<"\n";
                     DataGenerator::loadingBar(maxCapacity, i);
 
+                    file<<problemInstance->capacity<<" "<<problemInstance->quantity<<" ";
                     result = solveProblem<BacktrackingSolver>(problemInstance);
                     file<<result->elapsed_sec<<" ";
                     result = solveProblem<BacktrackingSolver_presorted_by_weight_desc>(problemInstance);
