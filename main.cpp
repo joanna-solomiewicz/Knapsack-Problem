@@ -36,55 +36,70 @@ int main() {
         <<"I will solve 0-1 Knapsack Problem for You :-)\n"
         <<"\n";
 
-    cout<<"Let's generate problem instance:\n";
-    ProblemInstance* problemInstance = ProblemGenerator::generateProblem();
+    cout<<"What would You like to do ?\n\n";
+    cout<<"1. Generate graph data ( NOT RECOMMENDED ;-) )\n"
+        <<"2. Generate problem instance\n";
+    bool generateInstance = 0;
+    ProblemInstance* problemInstance = NULL;
+    char answer = '0';
 
-    while (1)
-    {
-        Result* result = NULL;
-        std::system("clear");
+    cin >> answer;
+    while (answer < '1' || answer > '2')
+        cin >> answer;
+    switch (answer) {
+        case '1':
+            DataGenerator::generate();
+            break;
+        case '2':
+            problemInstance = ProblemGenerator::generateProblem();
+            generateInstance = 1;
+            break;
+    }
 
-        cout << "Great! Now, what do You want to do?:\n\n";
-        cout << "1. Show me problem instance:\n"
-        << "2. Solve problem using 'Bruteforce'algorithm (iterative version)\n"
-        << "3. Solve problem using 'Bruteforce' algorithm (recursive version)\n"
-        << "4. Solve problem using 'Greedy' algorithm\n"
-        << "5. Solve problem using 'Backtracking' algorithm\n"
-        << "6. Solve problem using 'Dynamic' algorithm\n"
-        << "7. Solve problem using 'Branch and Bound' algorithm\n"
-        << "8. Quit\n\n\n"
-        << "G. Generate output data.";
+    if(generateInstance) {
+        while (1)
+        {
+            Result* result = NULL;
+            std::system("clear");
 
-        char answer = '0';
-        while ( (answer < '1' || answer > '8') && answer !='G')
-            cin >> answer;
+            cout<< "Great! Now, what do You want to do?:\n\n";
+            cout<< "1. Show me problem instance:\n"
+                << "2. Solve problem using 'Bruteforce'algorithm (iterative version)\n"
+                << "3. Solve problem using 'Bruteforce' algorithm (recursive version)\n"
+                << "4. Solve problem using 'Greedy' algorithm\n"
+                << "5. Solve problem using 'Backtracking' algorithm\n"
+                << "6. Solve problem using 'Dynamic' algorithm\n"
+                << "7. Solve problem using 'Branch and Bound' algorithm\n"
+                << "8. Quit\n\n\n";
 
-        switch (answer) {
-            case '1':
-                problemInstance->print(); break;
-            case '2':
-                result = solveProblem<BruteforceIterativeSolver>(problemInstance); break;
-            case '3':
-                result = solveProblem<BruteforceRecursiveSolver>(problemInstance); break;
-            case '4':
-                result = solveProblem<GreedySolver>(problemInstance); break;
-            case '5':
-                result = solveProblem<BacktrackingSolver>(problemInstance); break;
-            case '6':
-                result = solveProblem<BacktrackingSolver_presorted_by_weight_desc>(problemInstance); break;
-            case '7':
-                result = solveProblem<BranchAndBoundSolver>(problemInstance); break;
-            case '8':
-                return 111;
-            case 'G':
-                DataGenerator::generate();
-                break;
+            answer = '0';
+            while ( answer < '1' || answer > '8' )
+                cin >> answer;
+
+            switch (answer) {
+                case '1':
+                    problemInstance->print(); break;
+                case '2':
+                    result = solveProblem<BruteforceIterativeSolver>(problemInstance); break;
+                case '3':
+                    result = solveProblem<BruteforceRecursiveSolver>(problemInstance); break;
+                case '4':
+                    result = solveProblem<GreedySolver>(problemInstance); break;
+                case '5':
+                    result = solveProblem<BacktrackingSolver>(problemInstance); break;
+                case '6':
+                    result = solveProblem<BacktrackingSolver_presorted_by_weight_desc>(problemInstance); break;
+                case '7':
+                    result = solveProblem<BranchAndBoundSolver>(problemInstance); break;
+                case '8':
+                    return 111;
+            }
+
+            if(result != NULL) result->print();
+
+            cout<<"\nType anything to continue:\n";
+            cin>>answer;
+
         }
-
-        if(result != NULL) result->print();
-        
-        cout<<"\nType anything to continue:\n";
-        cin>>answer;
-
     }
 }
