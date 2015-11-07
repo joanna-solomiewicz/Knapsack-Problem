@@ -8,6 +8,7 @@
  */
 
 #include <iostream>
+#include <ncurses.h>
 #include "ProblemGenerator.h"
 #include "Result.h"
 #include "Solvers/BruteforceIterativeSolver.h"
@@ -27,7 +28,6 @@ Result* solveProblem(ProblemInstance *instance){
 
 int main() {
     srand(time(NULL));
-    Result* result;
 
     cout<<"Greetings!\n"
         <<"I will solve 0-1 Knapsack Problem for You :-)\n"
@@ -38,16 +38,17 @@ int main() {
 
     while (1)
     {
+        Result* result = NULL;
         std::system("clear");
 
-        cout << "Great! Now, what do You wan't to do?:\n\n";
+        cout << "Great! Now, what do You want to do?:\n\n";
         cout << "1. Show me problem instance:\n"
         << "2. Solve problem using 'Bruteforce'algorithm (iterative version)\n"
         << "3. Solve problem using 'Bruteforce' algorithm (recursive version)\n"
-        << "4. Solve problem using 'Greedy; algorithm\n"
+        << "4. Solve problem using 'Greedy' algorithm\n"
         << "5. Solve problem using 'Backtracking' algorithm\n"
         << "6. Solve problem using 'Dynamic' algorithm\n"
-        << "7. Solve problem using 'Branch' and Bound algorithm\n"
+        << "7. Solve problem using 'Branch and Bound' algorithm\n"
         << "8. Quit\n";
 
         char answer = '0';
@@ -80,9 +81,11 @@ int main() {
                 return 111;
         }
 
-        result->print();//poprawić
-        char a;
-        cin>>a;
+        if(result != NULL) result->print();//poprawić
+
+        cout<<"\nType anything to continue:\n";
+        cin>>answer;
+
 
     }
 }
