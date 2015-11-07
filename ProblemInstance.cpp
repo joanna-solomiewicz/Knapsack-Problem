@@ -10,6 +10,15 @@ ProblemInstance::ProblemInstance() {
 	objectsList.clear();
 }
 
+ProblemInstance::ProblemInstance(int capacity, int quantity) {
+	this->capacity = capacity;
+	this->quantity = quantity;
+	for(int i = 1; i <= quantity; i++) {
+		Object* object = new Object(i);
+		objectsList.push_back(object);
+	}
+}
+
 void ProblemInstance::print() {
 	int objectsLeft = (int) objectsList.size();
 
@@ -26,3 +35,4 @@ void ProblemInstance::print() {
 	cout << "Capacity: " << capacity << endl;
 	cout << "Quantity: " << quantity << endl;
 }
+

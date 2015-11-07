@@ -12,5 +12,6 @@ public:
 
 public:
 	ProblemInstance();
+	ProblemInstance(int capacity, int quantity);
 	void print();
 };
