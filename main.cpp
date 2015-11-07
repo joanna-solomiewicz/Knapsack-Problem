@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include "ProblemGenerator.h"
+#include "ProblemInstance.h"
 #include "Result.h"
 #include "Solvers/BruteforceIterativeSolver.h"
 #include "Solvers/BruteforceRecursiveSolver.h"
@@ -27,8 +28,8 @@ Result* solveProblem(ProblemInstance *instance){
 
 int main() {
     srand(time(NULL));
-    Result* result;
 
+    std::system("clear");
     cout<<"Greetings!\n"
         <<"I will solve 0-1 Knapsack Problem for You :-)\n"
         <<"\n";
@@ -38,6 +39,7 @@ int main() {
 
     while (1)
     {
+        Result* result = NULL;
         std::system("clear");
 
         cout << "Great! Now, what do You wan't to do?:\n\n";
@@ -56,7 +58,7 @@ int main() {
 
         switch (answer) {
             case '1':
-                // Wyświetl instancję
+                problemInstance->print();
                 break;
             case '2':
                 result = solveProblem<BruteforceIterativeSolver>(problemInstance);
@@ -80,7 +82,7 @@ int main() {
                 return 111;
         }
 
-        result->print();//poprawić
+        if(result != NULL) result->print();//poprawić
         char a;
         cin>>a;
 

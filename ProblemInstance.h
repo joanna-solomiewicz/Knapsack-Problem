@@ -12,5 +12,5 @@ public:
 
 public:
 	ProblemInstance();
-
+	void print();
 };
