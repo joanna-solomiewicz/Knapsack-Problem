@@ -20,5 +20,5 @@ set(SOURCE_FILES
         Solvers/GreedySolver.cpp
         Solvers/GreedySolver.h
         Solvers/BacktrackingSolver.cpp
-        Solvers/BacktrackingSolver.h Solvers/BranchAndBoundSolver.cpp Solvers/BranchAndBoundSolver.h Solvers/BruteforceIterativeSolver.cpp Solvers/BruteforceIterativeSolver.h)
+        Solvers/BacktrackingSolver.h Solvers/BranchAndBoundSolver.cpp Solvers/BranchAndBoundSolver.h Solvers/BruteforceIterativeSolver.cpp Solvers/BruteforceIterativeSolver.h Solvers/BacktrackingSolver_presorted_by_weight_desc.cpp Solvers/BacktrackingSolver_presorted_by_weight_desc.h DataGenerator.cpp DataGenerator.h DataGenerator.cpp DataGenerator.h)
 add_executable(Knapsack_Problem ${SOURCE_FILES})

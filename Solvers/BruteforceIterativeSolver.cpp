@@ -8,7 +8,6 @@ using namespace std;
 static Result result;
 
 Result* BruteforceIterativeSolver::solveProblem(ProblemInstance *problemInstance) {
-
     int *Table = new int[problemInstance->quantity];
     int best_p_sum = 0;
     for (int j = 0; j < problemInstance->quantity; j++) { Table[j] = 0; }

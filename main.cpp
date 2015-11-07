@@ -8,7 +8,6 @@
  */
 
 #include <iostream>
-#include <ncurses.h>
 #include "ProblemGenerator.h"
 #include "ProblemInstance.h"
 #include "Result.h"
@@ -16,9 +15,10 @@
 #include "Solvers/BruteforceRecursiveSolver.h"
 #include "Solvers/GreedySolver.h"
 #include "Solvers/BacktrackingSolver.h"
+#include "Solvers/BacktrackingSolver_presorted_by_weight_desc.h"
 #include "Solvers/DynamicSolver.h"
 #include "Solvers/BranchAndBoundSolver.h"
-
+#include "DataGenerator.h"
 using namespace std;
 
 template <class T>
@@ -26,6 +26,7 @@ Result* solveProblem(ProblemInstance *instance){
     T solver;
     return solver.solveProblem(instance);
 }
+
 
 int main() {
     srand(time(NULL));
@@ -51,39 +52,36 @@ int main() {
         << "5. Solve problem using 'Backtracking' algorithm\n"
         << "6. Solve problem using 'Dynamic' algorithm\n"
         << "7. Solve problem using 'Branch and Bound' algorithm\n"
-        << "8. Quit\n";
+        << "8. Quit\n\n\n"
+        << "G. Generate output data.";
 
         char answer = '0';
-        while (answer < '1' || answer > '8')
+        while ( (answer < '1' || answer > '8') && answer !='G')
             cin >> answer;
 
         switch (answer) {
             case '1':
-                problemInstance->print();
-                break;
+                problemInstance->print(); break;
             case '2':
-                result = solveProblem<BruteforceIterativeSolver>(problemInstance);
-                break;
+                result = solveProblem<BruteforceIterativeSolver>(problemInstance); break;
             case '3':
-                result = solveProblem<BruteforceRecursiveSolver>(problemInstance);
-                break;
+                result = solveProblem<BruteforceRecursiveSolver>(problemInstance); break;
             case '4':
-                result = solveProblem<GreedySolver>(problemInstance);
-                break;
+                result = solveProblem<GreedySolver>(problemInstance); break;
             case '5':
-                result = solveProblem<BacktrackingSolver>(problemInstance);
-                break;
+                result = solveProblem<BacktrackingSolver>(problemInstance); break;
             case '6':
-                result = solveProblem<DynamicSolver>(problemInstance);
-                break;
+                result = solveProblem<BacktrackingSolver_presorted_by_weight_desc>(problemInstance); break;
             case '7':
-                result = solveProblem<BranchAndBoundSolver>(problemInstance);
-                break;
+                result = solveProblem<BranchAndBoundSolver>(problemInstance); break;
             case '8':
                 return 111;
+            case 'G':
+                DataGenerator::generate();
+                break;
         }
 
-        if(result != NULL) result->print();//poprawić
+        if(result != NULL) result->print();
         
         cout<<"\nType anything to continue:\n";
         cin>>answer;
