@@ -16,5 +16,6 @@ public:
     Result();
     void add(Object *object);
     void remove(Object *object);
+    void clear();
     void print();
 };

@@ -13,6 +13,7 @@ static Result result;
 static int capacity;
 
 Result *BacktrackingSolver_presorted_by_weight_desc::solveProblem(ProblemInstance *problemInstance) {
+    result.clear();
     capacity = problemInstance->capacity;
     Result tempResult;
 

@@ -14,6 +14,7 @@ static int capacity;
 
 
 Result *BacktrackingSolver::solveProblem(ProblemInstance *problemInstance) {
+    result.clear();
     capacity = problemInstance->capacity;
     Result tempResult;
 

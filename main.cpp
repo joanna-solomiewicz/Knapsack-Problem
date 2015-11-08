@@ -98,7 +98,6 @@ int main() {
 
             cout<<"\nType anything to continue:\n";
             cin>>answer;
-
         }
     }
 }

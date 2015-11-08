@@ -5,10 +5,7 @@
 using namespace std;
 
 Result::Result() {
-    valueSum = 0;
-    weightSum = 0;
-    elapsed_sec = 0.0;
-    chosenObjectsList.clear();
+    this->clear();
 }
 
 void Result::add(Object *object) {
@@ -37,3 +34,9 @@ void Result::print() {
     cout << "Problem solved in: " << elapsed_sec << " seconds" << endl;
 }
 
+void Result::clear() {
+    this->valueSum = 0;
+    this->weightSum = 0;
+    this->elapsed_sec = 0.0;
+    this->chosenObjectsList.clear();
+}

@@ -50,6 +50,7 @@ void BranchAndBoundSolver::dontTakeNode(std::list<Object*>::iterator i, std::lis
 }
 
 Result *BranchAndBoundSolver::solveProblem(ProblemInstance *problemInstance) {
+    result.clear();
     capacity = problemInstance->capacity;
     Result tempResult;
 

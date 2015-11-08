@@ -9,6 +9,7 @@ static Result result;
 static int capacity;
 
 Result *BruteforceRecursiveSolver::solveProblem(ProblemInstance *problemInstance) {
+    result.clear();
     capacity = problemInstance->capacity;
     Result tempResult;
 

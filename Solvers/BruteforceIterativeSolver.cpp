@@ -19,11 +19,9 @@ Result* BruteforceIterativeSolver::solveProblem(ProblemInstance *problemInstance
         for (auto &i : problemInstance->objectsList){
             if(Table[i->ordinal - 1] == 1){
                 pickedObjects.add(i);
-                if(pickedObjects.weightSum > problemInstance->capacity) break;
             }
         }
         if(pickedObjects.weightSum > problemInstance->capacity) continue;
-
         if(pickedObjects.valueSum > best_p_sum){
             best_p_sum = pickedObjects.valueSum;
             result = pickedObjects;
